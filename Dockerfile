@@ -1,11 +1,11 @@
 # Stage 1: Build the application
-FROM node:20-alpine AS build
+FROM node:22.12.0-alpine AS build
 
 WORKDIR /app
 
 COPY . .
 
-RUN apk --no-cache add git \
+RUN apk --no-cache add git openssl \
     && git submodule init \
     && git submodule update
 
@@ -14,7 +14,7 @@ RUN npm ci
 RUN npm run build
 
 # Stage 2: Create the final image with only the dist folder
-FROM node:20-alpine AS production
+FROM node:22.12.0-alpine AS production
 
 WORKDIR /app
 
