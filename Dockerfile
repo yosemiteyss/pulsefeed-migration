@@ -3,11 +3,11 @@ FROM node:22.12.0-alpine AS build
 
 WORKDIR /app
 
+RUN apk --no-cache add git openssl
+
 COPY . .
 
-RUN apk --no-cache add git openssl \
-    && git submodule init \
-    && git submodule update
+RUN git submodule init && git submodule update
 
 RUN npm ci
 
@@ -17,6 +17,8 @@ RUN npm run build
 FROM node:22.12.0-alpine AS production
 
 WORKDIR /app
+
+RUN apk --no-cache add git openssl
 
 COPY --from=build /app/dist ./dist
 
