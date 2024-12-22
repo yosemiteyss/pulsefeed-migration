@@ -22,8 +22,6 @@ RUN apk --no-cache add git openssl
 
 COPY --from=build /app/dist ./dist
 
-COPY --from=build /app/pulsefeed-common/prisma/schema.prisma ./dist/pulsefeed-common/prisma/schema.prisma
-
 COPY package.json package-lock.json ./
 
 RUN npm ci --only=production
