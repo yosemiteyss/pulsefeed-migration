@@ -6,10 +6,6 @@
     "deleteOutDir": true,
     "assets": [
       {
-        "include": "../pulsefeed-common/src/db/client/**/*",
-        "outDir": "dist/pulsefeed-common"
-      },
-      {
         "include": "../pulsefeed-common/prisma/**/*",
         "outDir": "dist/pulsefeed-common"
       }
