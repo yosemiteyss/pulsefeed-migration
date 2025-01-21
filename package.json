@@ -1,6 +1,6 @@
 {
   "name": "@yosemiteyss/pulsefeed-migration",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Manage database migrations and seeding.",
   "author": "yosemiteyss",
   "private": true,
