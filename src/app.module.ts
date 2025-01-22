@@ -1,16 +1,21 @@
+import { CacheModule, ConfigModule, DatabaseModule, LoggerModule } from '@pulsefeed/common';
 import { Module, OnApplicationBootstrap } from '@nestjs/common';
 import { MigrationModule, MigrationService } from './migration';
-import { ConfigModule, LoggerModule } from '@pulsefeed/common';
 import { SeedingModule, SeedingService } from './seeding';
 
 @Module({
   imports: [
+    DatabaseModule,
+    CacheModule,
     ConfigModule,
     // Disable batch loop to allow graceful shutdown.
     LoggerModule.forRootAsync({ batching: false }),
-    MigrationModule,
-    SeedingModule,
   ],
+})
+class CoreModule {}
+
+@Module({
+  imports: [CoreModule, MigrationModule, SeedingModule],
 })
 export class AppModule implements OnApplicationBootstrap {
   constructor(
