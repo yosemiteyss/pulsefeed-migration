@@ -1,9 +1,10 @@
-import { ArticleCategoryRepository, LanguageRepository } from '@pulsefeed/common';
+import { RepositoryModule } from '@pulsefeed/common';
 import { SeedingService } from './seeding.service';
 import { Module } from '@nestjs/common';
 
 @Module({
-  providers: [SeedingService, LanguageRepository, ArticleCategoryRepository],
+  imports: [RepositoryModule],
+  providers: [SeedingService],
   exports: [SeedingService],
 })
 export class SeedingModule {}
